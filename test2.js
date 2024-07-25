@@ -49,12 +49,7 @@ function checkBenefit() {
     { sum: 15, price: "Rp3,000.00" },
   ];
   let benefit = 0;
-  //   toko = toko.sort(
-  //     (a, b) =>
-  //       convertFromCurrency(b.price) * b.sum -
-  //       convertFromCurrency(a.price) * a.sum
-  //   );
-  //   console.log(toko);
+
   toko.forEach((valToko) => {
     let temp = [];
     bahan.forEach((valBahan, idx) => {
