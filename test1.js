@@ -6,8 +6,25 @@ function checkCondition(var1, var2) {
   );
 }
 
-function checkBalance(word) {
+function convertData(val) {
+  //   const char = "{[()]}";
+  //   const regex = new RegExp(`[${char}]`, "g");
+  //   const result = val.match(regex);
+  //   return result ? result.join("") : "";
+  const dataValid = ["{", "}", "[", "]", "(", ")"];
+  let result = "";
+  for (let index = 0; index < val.length; index++) {
+    if (dataValid.includes(val[index])) {
+      result = result + val[index];
+    }
+  }
+  return result;
+}
+
+function checkBalance(data) {
   let check = true;
+  const word = convertData(data);
+  console.log(word);
   if (word.length % 2 === 1) {
     check = false;
   } else {
@@ -21,5 +38,5 @@ function checkBalance(word) {
   return check ? "Seimbang" : "Tidak Seimbang";
 }
 
-console.log(checkBalance("({[]})"));
-console.log(checkBalance("([{])"));
+console.log(checkBalance("({123[]12323})"));
+console.log(checkBalance("([{3122])"));
