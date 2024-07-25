@@ -18,7 +18,8 @@ function checkBalance(word) {
       }
     }
   }
-  return check;
+  return check ? "Seimbang" : "Tidak Seimbang";
 }
 
-console.log(checkBalance("({{}})"));
+console.log(checkBalance("({[]})"));
+console.log(checkBalance("([{])"));
