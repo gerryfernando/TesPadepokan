@@ -29,11 +29,11 @@ function checkBahanAndMesin(toko, bahan, mesin) {
       untung = untung < total ? total : untung;
     });
   }
-  return untung;
+  return untung > 0 ? untung : 0;
 }
 
 function checkBenefit() {
-  const toko = [
+  let toko = [
     { sum: 10, price: "Rp20,000.00" },
     { sum: 5, price: "Rp50,000.00" },
     { sum: 6, price: "Rp15,000.00" },
@@ -49,10 +49,16 @@ function checkBenefit() {
     { sum: 15, price: "Rp3,000.00" },
   ];
   let benefit = 0;
+  //   toko = toko.sort(
+  //     (a, b) =>
+  //       convertFromCurrency(b.price) * b.sum -
+  //       convertFromCurrency(a.price) * a.sum
+  //   );
+  //   console.log(toko);
   toko.forEach((valToko) => {
     let temp = [];
     bahan.forEach((valBahan, idx) => {
-      console.log(valBahan);
+      //   console.log(valBahan);
       const res = checkBahanAndMesin(valToko, valBahan, mesin);
       temp.push(res);
     });
@@ -60,10 +66,15 @@ function checkBenefit() {
       (iMax, x, i, arr) => (x > arr[iMax] ? i : iMax),
       0
     );
+    // console.log(bahan);
     bahan[indexOfMaxValue].sum = bahan[indexOfMaxValue].sum - valToko.sum;
     benefit = benefit + temp[indexOfMaxValue];
   });
   return benefit;
 }
 
-console.log(checkBenefit());
+console.log(
+  `Keuntungan terbesar yang bisa didapat adalah: ${convertToCurrency(
+    checkBenefit()
+  )}`
+);
